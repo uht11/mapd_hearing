@@ -1,0 +1,44 @@
+Documentation for Database 
+
+The following are the three users in the database with various privileges
+Front-end user (GRANT privilege: SELECT)
+	Username: frontenduser
+	Password: mypass
+Write user (GRANT privilege: INSERT)
+	Username: writeuser
+	Password: writepass
+Admin ((GRANT privilege: ALL) 
+	Username: myuser
+	Password: mypass
+
+Creation of database and tables:
+The following command creates the database
+	CREATE DATABASE MAPD;
+	USE MAPD;
+The following commands are used to create a table and add various constraints such as primary key, secondary key, etc 
+	CREATE TABLE test ( user_id varchar(20) not null, password varchar(20) not null);
+	ALTER TABLE test ADD CONSTRAINT test_pk PRIMARY KEY ( user_id );
+
+
+Testcases for front-end user:
+Inserting data as a frontend user
+	INSERT INTO test ( user_id, password ) VALUES ('mpd34', 'test123');
+	Error msg:  INSERT command denied to user 'frontenduser'@'localhost' for table 'test'
+Reading the data (using SELECT)
+	SELECT * FROM test;
+Deleting data as a frontend user
+	DELETE FROM test;
+	DELETE command denied to user 'frontenduser'@'localhost' for table 'test'
+
+Testcases for write user:
+Inserting data as a write user
+	INSERT INTO test ( user_id, password ) VALUES ( 'mc26', '12345');
+Reading the data (using SELECT)
+	SELECT * FROM test;
+	Error msg: SELECT command denied to user 'writeuser'@'localhost' for table 'test'
+Deleting data as a write user
+	DELETE FROM test;
+	Error msg: DELETE command denied to user 'writeuser'@'localhost' for table 'test'
+
+
+
