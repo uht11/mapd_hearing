@@ -11,9 +11,14 @@ export class Login extends React.Component {
  
      }
      handleSubmit(e){
-         //console.log(this.state);
 
-         axios.get()
+
+
+        //axios.get('http://3.21.171.11/test.php', {uid : "1", upass: "12345"})
+        //.then(response => { console.log(response)})
+         //console.log(this.state);
+         
+
          
      }
 
@@ -44,7 +49,7 @@ export class Login extends React.Component {
                 <Input onChange={this.handleAdd} type="password" name="password" id="examplePassword" placeholder="Password" />
             </FormGroup>
             {' '}
-            <Button onChange={this.handleSubmit} color="primary" size="md" block>Sing in</Button>
+            <Button onClick={this.handleSubmit} color="primary" size="md" block>Sign in</Button>
             </Form>  
             </div>        
         </Row>
