@@ -1,4 +1,5 @@
-import {Login} from './component/login/';
+import {Login, Register} from './component/login/';
+import { BrowserRouter, Router, Route} from 'react-router-dom'
 import React, { useState } from 'react';
 import {
   Collapse,
@@ -20,15 +21,15 @@ const App = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">MAPD</NavbarBrand>
+        <NavbarBrand href="/login">MAPD</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/login/">Login</NavLink>
+              <NavLink href='/login'>Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>Registration</NavLink>
+              <NavLink href='/register'>Registration</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -51,7 +52,15 @@ const App = (props) => {
           <NavbarText>Help</NavbarText>
         </Collapse>
       </Navbar>
-      <Login/>
+      
+      <BrowserRouter>
+        <div className="Container">
+          <Route exact path='/' component={Login} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register}/>
+        </div>
+      </BrowserRouter>
+
     </div>
   );
 }
