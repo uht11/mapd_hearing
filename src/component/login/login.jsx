@@ -11,18 +11,9 @@ export class Login extends React.Component {
  
      }
      handleSubmit(e){
-
-
-
-        //axios.get('http://3.21.171.11/test.php', {uid : "1", upass: "12345"})
-        //.then(response => { console.log(response)})
-         //console.log(this.state);
-         
-
-         
-     }
-
-
+axios.get('http://3.21.171.11/test.php?uid=1&upass=12345')
+    .then(response => { console.log(response)})     
+}
     constructor(props){
         super(props);
         this.state = {
