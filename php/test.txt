@@ -1,0 +1,13 @@
+To test register function:
+URL: http://3.21.171.11/test.php?username=1&password=test123
+Returns 1 
+
+To test authentication function:
+
+If the user exists:
+URL: http://3.21.171.11/test.php?username=1&password=test123&type=login
+Returns 1
+
+If the user doesn't exist:
+URL: http://3.21.171.11/test.php?username=2&password=test123&type=login
+Returns 0
