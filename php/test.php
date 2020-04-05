@@ -24,8 +24,11 @@ if ($conn->connect_error) {
 if($type == 'login'){ //if the URL contains paramter type=login then authenticate
    authenticate();
 }
-else{ //if the user doesn't exist then register them
+elseif($type == 'registration'){ //if the user doesn't exist then register them
   register($user_id,$user_password);
+}
+else{
+  return 0;
 }
 
 //authenticate the user 
