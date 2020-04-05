@@ -9,39 +9,56 @@ $db_password = "mypass";
 $dbname="test";
 $user_id=$_GET["username"];
 $user_password=$_GET["password"];
+$type=$_GET["type"];
 $errors = array();
 
+echo $type;
 // Create connection
 $conn = new mysqli($servername, $db_user, $db_password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM user where user_id='$user_id' and user_password='$user_password'";
-$result = $conn->query($sql);
+
+//authenticate();
+//register();
+if($type == 'login'){
+   authenticate();
+
+}
+else{
+  
+  register($user_id,$user_password);
+  
+}
+
+//authenticate the user 
+function authenticate(){
+  $connection=new mysqli($servername, "frontenduser", "mypass", "MAPD");
+$sql = "SELECT * FROM test where user_id='$user_id' and password='$user_password'";
+$result = $connection->query($sql);
 if ($result->num_rows > 0) { echo 1;} 
 else {echo 0;}
+}
 
-function register($user_id, $user_password)
-{
-  $user_check = "SELECT * FROM user WHERE user_id='$user_id' LIMIT 1';
-  $res = mysqli_query($conn, $user_check);
-  $user = mysqli_fetch_assoc($result);
-  
-  //checking if the user already exists
-  if($user){
-    if($user['user_id'] === $user_id){
-      array_push($errors, "User already exists");
-    }
-  }
-  
-  //registering the user 
-  if(count($errors) == 0){
-    $query = "INSERT INTO user (user_id, password)
-              VALUES ('$user_id','$password')";
-    mysqli_query($conn, $query);
-  }
-  
+//register Marchant
+function register($user_id,$user_password)
+{ 
+  //echo "------the user id is: ";
+  //echo "$user_id";
+
+//$query = "INSERT INTO business(location,storename,email,category,lat,longit,password,timestamp) VALUES ('$location','$storename','$email','$category','$lat','$longit','$password',now())";
+
+  $cnn = new mysqli($servername, "writeuser", "writepass", "MAPD");
+  $query = "INSERT INTO test( user_id, password ) VALUES ('$user_id', '$user_password')";
+
+
+
+  $res = mysqli_query($cnn, $query) or die(mysqli_error($cnn));
+  //echo $res;  
+
+  if ($res){ echo 1 ; }
+  else { echo 0 ;}
 }
 
 $conn->close();
