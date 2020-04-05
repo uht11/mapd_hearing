@@ -12,7 +12,7 @@ $user_password=$_GET["password"];
 $type=$_GET["type"];
 $errors = array();
 
-echo $type;
+
 // Create connection
 $conn = new mysqli($servername, $db_user, $db_password, $dbname);
 // Check connection
@@ -20,43 +20,39 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//authenticate();
-//register();
-if($type == 'login'){
-   authenticate();
 
+if($type == 'login'){ //if the URL contains paramter type=login then authenticate
+   authenticate();
 }
-else{
-  
+else{ //if the user doesn't exist then register them
   register($user_id,$user_password);
-  
 }
 
 //authenticate the user 
 function authenticate(){
+  //read user (PRIVILEGE: SELECT existing user from database
   $connection=new mysqli($servername, "frontenduser", "mypass", "MAPD");
-$sql = "SELECT * FROM test where user_id='$user_id' and password='$user_password'";
-$result = $connection->query($sql);
-if ($result->num_rows > 0) { echo 1;} 
-else {echo 0;}
+  
+  //searching for existing user in database
+  $sql = "SELECT * FROM test where user_id='$user_id' and password='$user_password'";
+
+  //if the user is found return 1
+  $result = $connection->query($sql);
+  if ($result->num_rows > 0) { echo 1;} 
+  else {echo 0;}
 }
 
 //register Marchant
 function register($user_id,$user_password)
 { 
-  //echo "------the user id is: ";
-  //echo "$user_id";
-
-//$query = "INSERT INTO business(location,storename,email,category,lat,longit,password,timestamp) VALUES ('$location','$storename','$email','$category','$lat','$longit','$password',now())";
-
+  //write user (PRIVILIGE: INSERT to database)
   $cnn = new mysqli($servername, "writeuser", "writepass", "MAPD");
+  
+  //adding the user to database
   $query = "INSERT INTO test( user_id, password ) VALUES ('$user_id', '$user_password')";
-
-
-
+  
+  //if the query succeeds return 1, else 0
   $res = mysqli_query($cnn, $query) or die(mysqli_error($cnn));
-  //echo $res;  
-
   if ($res){ echo 1 ; }
   else { echo 0 ;}
 }
