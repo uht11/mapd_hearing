@@ -23,7 +23,8 @@ export class Register extends React.Component {
         this.state = {
             username : "",
             password : "",
-            email : ""
+            email : "",
+            test : ""
         };
         this.handleAdd = this.handleAdd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +34,7 @@ export class Register extends React.Component {
         <Container fluid={false}>
         <Row className="base-container">
             <div className="formwrapper">
-            <img src={loginImg}></img>
+            <img alt='logo' src={loginImg}></img>
             <Form>
             <FormGroup>
                 <Label for="exampleusername" hidden>Username</Label>

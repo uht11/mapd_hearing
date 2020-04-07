@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import loginImg from "../../logo.png";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import httpRequests from '../../httpRequests.js';
 export class Login extends React.Component {
   
     handleAdd(e) {
@@ -12,12 +13,12 @@ export class Login extends React.Component {
      }
      handleSubmit(e){
 
-
-
-        //axios.get('http://3.21.171.11/test.php', {uid : "1", upass: "12345"})
-        //.then(response => { console.log(response)})
-         //console.log(this.state);
-         
+        httpRequests(this.state.username,this.state.password,'login');
+/*
+        axios.get('http://3.21.171.11/test.php?uid=1&upass=12345&type=login')
+        .then(response => { console.log(response)})
+         console.log(this.state);
+         */
 
          
      }
