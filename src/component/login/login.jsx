@@ -5,36 +5,49 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'react
 import httpRequests from '../../httpRequests.js';
 export class Login extends React.Component {
   
-    handleAdd(e) {
+    constructor(props){
+        super(props);
+        this.state = {
+            username : "",
+            password : "",
+            isLoggedIn : "false"
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+    handleChange(e) {
         this.setState({
              [e.target.name]: e.target.value
          });
  
      }
+     //handling submit and sending request
      handleSubmit(e){
 
-        httpRequests(this.state.username,this.state.password,'login');
-/*
-        axios.get('http://3.21.171.11/test.php?uid=1&upass=12345&type=login')
-        .then(response => { console.log(response)})
-         console.log(this.state);
-         */
+        axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&type=login')
+        .then( response => {
+           // console.log(response);console.log(this.state);
+            if (response.data == 1) {
+              this.handleSuccessfulAuth(response.data);
+              this.setState({ isLoggedIn : "true" })
+            }
+          })
+          .catch(error => {
+            console.log("login error", error);
+          });
 
          
      }
-
+     handleSuccessfulAuth(data) {
+        
+        this.props.history.push("/home");
+      }
 
  
-}
-    constructor(props){
-        super(props);
-        this.state = {
-            username : "",
-            password : ""
-        };
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+
+    
     render(){
         return(
         <Container fluid={false}>
@@ -44,12 +57,12 @@ export class Login extends React.Component {
             <Form>
             <FormGroup>
                 <Label for="exampleusername" hidden>Username</Label>
-                <Input onChange={this.handleAdd} type="username" name="username" id="exampleusername" placeholder="Username" />
+                <Input onChange={this.handleChange} type="username" name="username" id="exampleusername" placeholder="Username" />
             </FormGroup>
             {' '}
             <FormGroup>
                 <Label for="examplePassword" hidden>Password</Label>
-                <Input onChange={this.handleAdd} type="password" name="password" id="examplePassword" placeholder="Password" />
+                <Input onChange={this.handleChange} type="password" name="password" id="examplePassword" placeholder="Password" />
             </FormGroup>
             {' '}
             <Button onClick={this.handleSubmit} color="primary" size="md" block>Sign in</Button>
