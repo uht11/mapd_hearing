@@ -28,7 +28,7 @@ elseif($type == 'registration'){ //if the user doesn't exist then register them
   register($user_id,$user_password);
 }
 else{
-  return 0;
+  echo 0;
 }
 
 //authenticate the user 
@@ -41,6 +41,9 @@ function authenticate(){
 
   //if the user is found return 1
   $result = $connection->query($sql);
+  //echo "------";
+  //echo "$result->num_rows";
+  //echo "---_";
   if ($result->num_rows > 0) { echo 1;} 
   else {echo 0;}
 }
