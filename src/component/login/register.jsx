@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import loginImg from "../../logo.png";
+import {validatePassword , validateUser} from "./validate";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export class Register extends React.Component {
    
@@ -11,11 +12,24 @@ export class Register extends React.Component {
  
      }
      handleSubmit(e){
-         //console.log(this.state);
-         axios.get()
+
+        if(validateUser(this.state.username)==true && validatePassword(this.state.password)==true){
+        axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&type=registration')
+        .then( response => {
+        // console.log(response);console.log(this.state);
+            if (response.data == 1) {
+            alert('New user registration successful');
+            
+            }
+            else { alert('Registration unsuccessful, please double check your input')}
+        })
+        .catch(error => {
+            console.log("login error", error);
+        });
 
          
      }
+    }
 
 
     constructor(props){

@@ -3,6 +3,7 @@ import axios from 'axios';
 import loginImg from "../../logo.png";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import httpRequests from '../../httpRequests.js';
+import {validatePassword , validateUser} from "./validate";
 export class Login extends React.Component {
   
     constructor(props){
@@ -25,7 +26,7 @@ export class Login extends React.Component {
      }
      //handling submit and sending request
      handleSubmit(e){
-
+        if(validateUser(this.state.username)==true && validatePassword(this.state.password)==true){
         axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&type=login')
         .then( response => {
            // console.log(response);console.log(this.state);
@@ -33,12 +34,16 @@ export class Login extends React.Component {
               this.handleSuccessfulAuth(response.data);
               this.setState({ isLoggedIn : "true" })
             }
+            else{
+
+                alert('Invalid entry, please try again')
+            }
           })
           .catch(error => {
             console.log("login error", error);
           });
 
-         
+        }
      }
      handleSuccessfulAuth(data) {
         
