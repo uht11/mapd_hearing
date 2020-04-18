@@ -18,3 +18,66 @@
     }
 }
 }
+
+.tableWrapper{
+    width: 80%;
+    padding-bottom: 10%;
+    margin:2% 10%;
+    border-top: 3px solid rgb(127, 184, 231);
+    box-shadow: 0px 2px 5px 1px rgba(226, 230, 231, 0.871);
+    img{
+        width: 35%;
+        height: 35%;
+        margin-left: 33%;
+        margin-bottom: 25px;
+    }
+}
+
+$baseColor: rgb(127, 184, 231);
+
+$imageBig: 100px;
+$imageSmall: 60px;
+$padding: 10px;
+
+
+.header {
+   background-color: rgb(127, 184, 231);
+   color: white;
+   font-size: 1.5em;
+   padding: 1rem;
+   text-align: center;
+   text-transform: uppercase;
+}
+
+
+
+table {
+   width: 100%;
+   td, th { 
+      color: darken($baseColor, 10%);
+      padding: $padding; 
+   }
+   
+   td {
+      text-align: center;
+      vertical-align: middle;
+      
+      &:last-child {
+         font-size: 0.95em;
+         line-height: 1.4;
+         text-align: left;
+      }
+   }
+   
+   th { 
+      background-color: lighten($baseColor, 50%);
+      font-weight: 300;
+   }
+   
+   tr {     
+      &:nth-child(2n) { background-color: white; }
+      &:nth-child(2n+1) { background-color: lighten($baseColor, 55%) }
+   }
+}
+
+

@@ -1,4 +1,4 @@
-import {Login, Register} from './component/login/';
+import {Login, Register, viewUsers} from './component/login/';
 import {Home, Manuu} from './component/userPages/';
 import { BrowserRouter, Router, Route} from 'react-router-dom'
 import React, { useState } from 'react';
@@ -28,6 +28,7 @@ const App = (props) => {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register}/>
           <Route path='/home' component={Home}/>
+          <Route path='/viewUsers' component={viewUsers}/>
         </div>
       </BrowserRouter>
 
