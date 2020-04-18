@@ -2,12 +2,12 @@
 
 
 //function to check if the email input is valid
-/* 
-function validateEmail(rEmail) {
+
+export function validateEmail(rEmail) {
     var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regEx.test(String(rEmail).toLowerCase());
 }// end of function validateEmail
-*/
+
 //function to check if the user input is valid 
 export function validateUser(rUser) {
     if(rUser.length > 3){return true; }

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import loginImg from "../../logo.png";
-import {validatePassword , validateUser} from "./validate";
+import {validatePassword , validateUser, validateEmail} from "./validate";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export class Register extends React.Component {
    
@@ -9,12 +9,13 @@ export class Register extends React.Component {
         this.setState({
              [e.target.name]: e.target.value
          });
- 
+         
      }
      handleSubmit(e){
-
+        if(validateEmail(this.state.email) == false){alert('Please Enter a Valid Email Address'); return;}
+        
         if(validateUser(this.state.username)==true && validatePassword(this.state.password)==true){
-        axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&type=registration')
+        axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&email='+this.state.email+'&type=registration')
         .then( response => {
         // console.log(response);console.log(this.state);
             if (response.data == 1) {
