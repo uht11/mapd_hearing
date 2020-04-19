@@ -1,21 +1,34 @@
+
 import React from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import loginImg from "../../logo.png";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import httpRequests from '../../httpRequests.js';
-import {validatePassword , validateUser} from "./validate";
+import {validatePassword , validateUser, getData} from "./validate";
+import { useState } from 'react';
 export class viewUsers extends React.Component {
+    
+
   
+
+
     constructor(props){
+   
         super(props);
         this.state = {
-            username : "",
-            password : "",
-            isLoggedIn : "false"
+            username : ""
+            
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
+        
+
+      
+
+      console.log(getData());
+      
+    } // end of constructor
 
 
     handleChange(e) {
@@ -24,83 +37,73 @@ export class viewUsers extends React.Component {
          });
  
      }
+
      //handling submit and sending request
      handleSubmit(e){
-        if(validateUser(this.state.username)==true && validatePassword(this.state.password)==true){
-        axios.get('http://3.21.171.11/test.php?username='+this.state.username+'&password='+this.state.password+'&type=login')
-        .then( response => {
-           // console.log(response);console.log(this.state);
-            if (response.data == 1) {
-              this.handleSuccessfulAuth(response.data);
-              this.setState({ isLoggedIn : "true" })
-            }
-            else{
-
-                alert('Invalid entry, please try again')
-            }
-          })
-          .catch(error => {
-            console.log("login error", error);
-          });
-
-        }
-     }
-     handleSuccessfulAuth(data) {
+      
         
-        this.props.history.push("/home");
+     }
+     handleSuccessfulAuth(data) {}
+
+
+
+
+
+
+
+     createTable = () => {
+      let table = []
+  
+      // Outer loop to create parent
+      for (let i = 0; i < 5; i++) {
+        let children = []
+        //Inner loop to create children
+        for (let j = 0; j < 4; j++) {
+          children.push(<td>{}</td>)
+        }
+        //Create the parent and add the children
+        table.push(<tr>{children}</tr>)
       }
+      return table
+    }
 
- 
+     
 
-    
+
+     //start render
     render(){
+       const { userArr } = this.state
         return(
-        <Container fluid={false}>
+         <Container fluid={false}>
+
+         <div className="users">
+         
+       </div>
+        
+           
+        
         <Row className="base-container">
             <div className="tableWrapper">
             <div class="table-users">
    <div class="header">Registered Users</div>
    
    <table cellspacing="0">
+
       <tr>
          <th>Username</th>
+         <th>Password</th>
          <th>Email</th>
-         <th>Phone</th>
-         <th width="230">Comments</th>
+         <th width="100">Delete</th>
       </tr>
+     {this.createTable()}
 
-      <tr>
-         <td>Jane Doe</td>
-         <td>jane.doe@foo.com</td>
-         <td>01 800 2000</td>
-         <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
-      </tr>
-
-      <tr>
-         <td>John Doe</td>
-         <td>john.doe@foo.com</td>
-         <td>01 800 2000</td>
-         <td>Blanditiis, aliquid numquam iure voluptatibus ut maiores explicabo ducimus neque, nesciunt rerum perferendis, inventore.</td>
-      </tr>
-
-      <tr>
-         <td>Jane Smith</td>
-         <td>jane.smith@foo.com</td>
-         <td>01 800 2000</td>
-         <td> Culpa praesentium unde pariatur fugit eos recusandae voluptas.</td>
-      </tr>
-      
-      <tr>
-         <td>John Smith</td>
-         <td>john.smith@foo.com</td>
-         <td>01 800 2000</td>
-         <td>Aut voluptatum accusantium, eveniet, sapiente quaerat adipisci consequatur maxime temporibus quas, dolorem impedit.</td>
-      </tr>
    </table>
 </div>
             </div>        
+        
         </Row>
         </Container>);
     }
 
 }
+

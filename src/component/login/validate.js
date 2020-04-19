@@ -1,4 +1,4 @@
-
+var userData = [];
 
 
 //function to check if the email input is valid
@@ -32,3 +32,15 @@ export function validatePassword(rPass) {
 }// end of function validatePassword
  
 
+
+export function getData(){
+
+    fetch("http://3.21.171.11/test.php?type=fetch", {method: 'GET', redirect: 'follow'})
+      .then(response => response.json())
+      .then(result => userData = result)
+      
+
+      .catch(error => console.log('error', error));
+
+    return userData;
+}
