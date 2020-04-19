@@ -1,4 +1,20 @@
 import axios from 'axios';
+export function fetchData(){
+return fetch("http://3.21.171.11/test.php?type=fetch")
+      .then(res => res.json())
+      .then(response => {
+        console.log(JSON.stringify(response))
+        return response;
+      }).catch(error => console.error('Error: from Json Handler', error));
+}
+export function test(){
+    console.log("Hello")
+}
+
+
+
+
+
 
 // uses the data to redirect user to main page or gives an error
 function setData(data){
@@ -11,8 +27,6 @@ function setData(data){
         alert('Login Failed');
     }
 }
-
-
 
 /*
 axios.get('http://3.21.171.11/test.php?uid=1&upass=12345&type=login')
@@ -33,10 +47,6 @@ export function logIn(userName, Password) {
     
   }
  
-
-
-
-
   export default function(uid, upass, type){
 
     if(type == "login"){ 
