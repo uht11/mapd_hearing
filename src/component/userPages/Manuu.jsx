@@ -41,7 +41,9 @@ render(){
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
+                <NavItem>
+                  <NavLink href='/viewUsers'>View User List</NavLink>
+                </NavItem>
                 </DropdownItem>
                 <DropdownItem>
                   Option 2

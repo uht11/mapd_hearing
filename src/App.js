@@ -1,9 +1,15 @@
-import {Login, Register} from './component/login/';
+import {Login, Register, viewUsers} from './component/login/';
 import {Home, Manuu} from './component/userPages/';
 import { BrowserRouter, Router, Route} from 'react-router-dom'
 import React, { useState } from 'react';
 import { logIn } from './httpRequests.js';
 const App = (props) => {
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 4250362efd6fb6bf70dfb39303584092ad6105f1
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -16,6 +22,7 @@ const App = (props) => {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register}/>
           <Route path='/home' component={Home}/>
+          <Route path='/viewUsers' component={viewUsers}/>
         </div>
       </BrowserRouter>
 

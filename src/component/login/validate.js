@@ -1,13 +1,13 @@
-
+var userData = [];
 
 
 //function to check if the email input is valid
-/* 
-function validateEmail(rEmail) {
+
+export function validateEmail(rEmail) {
     var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regEx.test(String(rEmail).toLowerCase());
 }// end of function validateEmail
-*/
+
 //function to check if the user input is valid 
 export function validateUser(rUser) {
     if(rUser.length > 3){return true; }
@@ -32,3 +32,15 @@ export function validatePassword(rPass) {
 }// end of function validatePassword
  
 
+
+export function getData(){
+
+    fetch("http://3.21.171.11/test.php?type=fetch", {method: 'GET', redirect: 'follow'})
+      .then(response => response.json())
+      .then(result => userData = result)
+      
+
+      .catch(error => console.log('error', error));
+
+    return userData;
+}
