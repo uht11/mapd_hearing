@@ -3,19 +3,7 @@ import {Home, Manuu} from './component/userPages/';
 import { BrowserRouter, Router, Route} from 'react-router-dom'
 import React, { useState } from 'react';
 import { logIn } from './httpRequests.js';
-
-
-
-
-
-
-
-
 const App = (props) => {
-
-
-
-
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -24,7 +12,7 @@ const App = (props) => {
       <Manuu/> 
       <BrowserRouter>
         <div className="Container">
-          <Route exact path='/' component={Login} />
+          <Route exact path='/' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register}/>
           <Route path='/home' component={Home}/>
