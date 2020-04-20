@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import loginImg from "../../logo.png";
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import httpRequests from '../../httpRequests.js';
 import {validatePassword , validateUser} from "./validate";
 export class Login extends React.Component {
   

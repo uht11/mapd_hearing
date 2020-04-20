@@ -3,7 +3,7 @@ export function fetchData(){
 return fetch("http://3.21.171.11/test.php?type=fetch")
       .then(res => res.json())
       .then(response => {
-        console.log(JSON.stringify(response))
+        //console.log(JSON.stringify(response))
         return response;
       }).catch(error => console.error('Error: from Json Handler', error));
 }
