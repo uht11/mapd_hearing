@@ -93,7 +93,7 @@ export class viewUsers extends React.Component {
          <th>Email</th>
          <th width="100">Delete</th>
       </tr>
-      {this.state.fetchedData!=null?this.state.fetchedData.map((element) => 0 != element.length?( <tr><td>{element.user_id}</td><td>{element.password}</td><td>{element.Email}</td><td><button name={element.user_id} onClick={this.deleteUser.bind()}>Delete</button></td></tr>):null):null}
+      {this.state.fetchedData!=null?this.state.fetchedData.map((element) => 0 != element.length?( <tr><td>{element.user_id}</td><td>{element.password}</td><td>{element.Email}</td><td><button name={element.user_id} onClick={this.deleteUser.bind()}  class='delete'>Delete</button></td></tr>):null):null}
       
    </table>
 </div>

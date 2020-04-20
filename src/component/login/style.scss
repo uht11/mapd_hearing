@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap');
+
 .base-container{
  display: flex;
  flex-direction: column;
@@ -67,6 +68,7 @@ table {
          color:#515654 ;
          line-height: 1.4;
          text-align: left;
+         padding: 0em;
       }
    }
    
@@ -82,3 +84,55 @@ table {
 }
 
 
+
+//------------------------------------------------------------
+
+
+
+ 
+ .delete {
+   position: relative;
+   background: none;
+   color: rgb(233, 114, 114);
+
+   border: 0.15em solid rgb(127, 184, 231);
+   
+   padding-top: .5em;
+   padding-left: 1.2em;
+   padding-right: 1.2em;
+   &::before {
+     content: "";
+     display: block;
+     position: absolute;
+     width: 10%;
+     background: #fff;
+     height: 0.2em;
+     right: 20%;
+     top: -0.21em;
+     transform: skewX(-45deg);
+     -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+   }
+   &::after {
+     content: "";
+     display: block;
+     position: absolute;
+     width: 10%;
+     background: #fff;
+     height: 0.3em;
+     left: 20%;
+     bottom: -0.25em;
+     transform: skewX(45deg);
+     -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+   }
+   &:hover {
+     &::before {
+       right: 80%;
+     }
+     &::after {
+       left: 80%;
+     }
+   }
+ }
+ 
